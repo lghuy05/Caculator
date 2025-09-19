@@ -8,8 +8,8 @@ body {
 }
 
 .iphone-frame {
-  width: 400px;
-  height: 712px;
+  width: 375px;
+  height: 812px;
   border: 16px solid #222;
   border-radius: 50px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
@@ -37,5 +37,60 @@ body {
   width: 100%;
   padding: 40px 0 0 0;
   box-sizing: border-box;
-  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.calc-screen {
+  width: 90%;
+  height: 100px;
+  background: white;
+  color: black;
+  font-size: 2.5rem;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 20px;
+  box-sizing: border-box;
+  letter-spacing: 2px;
+  overflow-x: auto;
+}
+
+.button-grid {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.button-grid button {
+  height: 70px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  background: #f2f2f2;
+  color: #222;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button-grid button.operator {
+  background: #ff9500;
+  color: #fff;
+}
+
+.button-grid button:active {
+  background: #ddd;
+}
+
+.button-grid button.zero {
+  grid-column: span 2;
+  border-radius: 30px;
+  text-align: left;
+  padding-left: 28px;
 }
