@@ -1,7 +1,7 @@
 let currentOperand = '0';
 let previousOperand = '';
 let operation = null;
-let shouldResetScreen = false;
+let waitingForSecondOperand = false;
 
 const calcScreen = document.getElementById('calc-screen');
 const numberButtons = document.querySelectorAll('[data-number]');
@@ -40,18 +40,18 @@ function initCalculator() {
 }
 
 function appendNumber(number) {
-  if (currentOperand === '0' || shouldResetScreen) {
+  if (currentOperand === '0' || waitingForSecondOperand) {
     currentOperand = number;
-    shouldResetScreen = false;
+    waitingForSecondOperand = false;
   } else {
     currentOperand += number;
   }
 }
 
 function appendDecimal() {
-  if (shouldResetScreen) {
+  if (waitingForSecondOperand) {
     currentOperand = '0.';
-    shouldResetScreen = false;
+    waitingForSecondOperand = false;
     return;
   }
 
@@ -63,13 +63,13 @@ function appendDecimal() {
 function chooseOperation(selectedOperation) {
   if (currentOperand === '') return;
 
-  if (previousOperand !== '') {
+  if (previousOperand !== '' && operation !== null) {
     calculate();
   }
 
   operation = selectedOperation;
   previousOperand = currentOperand;
-  shouldResetScreen = true;
+  waitingForSecondOperand = true;
 }
 
 function calculate() {
@@ -106,11 +106,10 @@ function calculate() {
   currentOperand = result.toString();
   operation = null;
   previousOperand = '';
-  shouldResetScreen = true;
+  waitingForSecondOperand = true;
   updateDisplay();
 }
 
-// Clear calculator
 function clear() {
   currentOperand = '0';
   previousOperand = '';
